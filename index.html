@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexiumCodding — Développeur GLua</title>
+  <meta name="description" content="Portfolio et tarifs de NexiumCodding — développeur GLua pour Garry's Mod.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NexiumCodding — Développeur GLua">
+  <meta property="og:description" content="Addons GLua sur mesure, création complète de serveurs, maintenance et tarifs transparents.">
+  <meta property="og:image" content="https://nexiumdev.github.io/NexiumDev/nexium-bg.jpg">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b11;
+      --panel: rgba(15, 15, 24, .75);
+      --muted: #c8c8c8;
+      --line: rgba(255,255,255,.08);
+      --primary: #be44ff;
+      --primary-2: #22d3ee;
+      --ok: #22c55e;
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      background: var(--bg); color: #ececec; line-height: 1.6;
+    }
+    .bg-layer {
+      position: fixed; inset: 0; z-index: -1;
+      background-image:
+        url('https://nexiumdev.github.io/NexiumDev/nexium-bg.jpg'),
+        url('./nexium-bg.jpg');
+      background-position: center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed;
+    }
+    .shade { position: fixed; inset:0; z-index:-1; background: radial-gradient(120% 70% at 50% 0%, rgba(10,10,20,.35), rgba(10,10,20,.85)); }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px }
+    .nav { display:flex; justify-content:space-between; align-items:center; backdrop-filter: blur(10px) saturate(140%);
+           background: var(--panel); border:1px solid var(--line); border-radius:18px; padding:12px 16px; margin-top:12px }
+    .brand { font-size: 18px }
+    .links a { color:#e7d2ff; text-decoration:none; margin-left:18px }
+    .hero { padding: 80px 0 40px }
+    .title { font-weight: 800; font-size: 44px; margin: 0 0 12px }
+    .muted { color: var(--muted) }
+
+    .section { margin: 42px 0 }
+    .panel { background: var(--panel); border:1px solid var(--line); border-radius:18px; padding:18px }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:16px }
+    .card { background: rgba(0,0,0,.45); border: 1px solid var(--line); border-radius:18px; overflow:hidden }
+    .card .thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(190,68,255,.35), rgba(34,211,238,.25)); border-bottom:1px solid var(--line) }
+    .card .body { padding:14px }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px }
+    .tag{ border:1px solid var(--line); color:#eaeaea; padding:4px 8px; border-radius:999px; font-size:12px }
+
+    /* Pricing "product" style */
+    .pricing-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:16px }
+    .price-card { border:1px solid var(--line); border-radius:18px; overflow:hidden; background: rgba(0,0,0,.45) }
+    .price-top { padding:18px; border-bottom:1px solid var(--line);
+      background: radial-gradient(100% 120% at 20% 20%, rgba(190,68,255,.25), transparent 60%), radial-gradient(100% 120% at 80% 0%, rgba(34,211,238,.22), transparent 65%);
+    }
+    .price-title { margin:0 0 10px; font-size:18px; font-weight:800 }
+    .price-amount { display:inline-block; background: #fff; color:#0f0f16; padding:6px 12px; border-radius:10px; font-weight:800 }
+    .price-desc { padding:14px; color: var(--muted) }
+    .btn { display:inline-block; border:1px solid var(--line); padding:10px 14px; border-radius:12px; color:#fff; text-decoration:none; }
+    .btn-primary { background: linear-gradient(90deg, var(--primary), var(--primary-2)); border:none }
+    .btn-ghost { background: transparent }
+    .btn-row { display:flex; gap:10px; padding:0 14px 16px }
+
+    /* Add Portfolio Button */
+    .fab { position: fixed; right: 18px; bottom: 18px; padding:12px 16px; border-radius:14px; border:1px solid var(--line);
+           background: linear-gradient(90deg, var(--primary), var(--primary-2)); color:#fff; cursor:pointer; box-shadow: 0 10px 30px rgba(0,0,0,.35); z-index:10 }
+
+    /* Modal */
+    .backdrop { position: fixed; inset:0; background: rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; z-index:20 }
+    .modal { width: 720px; max-width: calc(100% - 24px); background:#11121a; border:1px solid var(--line); border-radius:18px; padding:18px }
+    .modal h3 { margin:0 0 12px }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px }
+    .row-1 { display:grid; grid-template-columns:1fr; gap:12px }
+    input, textarea { width:100%; background:#0d0e15; border:1px solid var(--line); padding:10px 12px; color:#fff; border-radius:12px }
+    textarea { min-height: 90px }
+    .modal .actions { display:flex; gap:10px; justify-content:flex-end; margin-top:12px }
+    .notice { font-size:12px; color:var(--muted) }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; background: rgba(255,255,255,.07); border:1px solid var(--line); border-radius:999px; font-size:12px }
+
+    footer { opacity:.8; margin:40px 0 }
+    @media (max-width: 640px) {
+      .row { grid-template-columns:1fr }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <div class="shade"></div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <strong class="brand">NexiumCodding</strong>
+      <div class="links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <h1 class="title">Développement GLua pour vos serveurs Garry's Mod</h1>
+      <p class="muted">HUD, inventaires, jobs, intégrations et optimisation. Livraison propre, documentée, support.</p>
+    </header>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section">
+      <div class="panel">
+        <h2 style="margin:0 0 8px">Portfolio</h2>
+        <p class="muted" style="margin:0 0 16px">Tes réalisations. Ajoute des projets via le bouton “Ajouter un portfolio”.</p>
+        <div id="portfolioGrid" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section id="tarifs" class="section">
+      <div class="panel">
+        <h2 style="margin:0 0 8px">Tarifs</h2>
+        <p class="muted" style="margin:0 0 16px">Services et prestations — style vitrine, sans achat en ligne.</p>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-top">
+              <div class="pill">Service</div>
+              <h3 class="price-title">Modification d'addons</h3>
+              <div class="price-amount">25€</div>
+            </div>
+            <div class="price-desc">Correction ou légère modification d'un addon existant (petits ajustements, fix).</div>
+            <div class="btn-row"><a class="btn btn-ghost" href="#contact">Demander</a></div>
+          </article>
+
+          <article class="price-card">
+            <div class="price-top">
+              <div class="pill">Service</div>
+              <h3 class="price-title">Addon personnalisé</h3>
+              <div class="price-amount">150€ – 300€</div>
+            </div>
+            <div class="price-desc">Création d'un addon sur mesure selon cahier des charges (prix selon complexité).</div>
+            <div class="btn-row"><a class="btn btn-ghost" href="#contact">Demander</a></div>
+          </article>
+
+          <article class="price-card">
+            <div class="price-top">
+              <div class="pill">Pack</div>
+              <h3 class="price-title">Création complète d'un serveur</h3>
+              <div class="price-amount">1000€</div>
+            </div>
+            <div class="price-desc">Mise en place complète : addons, gamemode, configuration, optimisation & docs.</div>
+            <div class="btn-row"><a class="btn btn-ghost" href="#contact">Demander</a></div>
+          </article>
+
+          <article class="price-card">
+            <div class="price-top">
+              <div class="pill">Abonnement</div>
+              <h3 class="price-title">Développeur pour communauté</h3>
+              <div class="price-amount">50€/mois</div>
+            </div>
+            <div class="price-desc">Maintenance, petites features récurrentes, support et suivi.</div>
+            <div class="btn-row"><a class="btn btn-ghost" href="#contact">Demander</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="panel">
+        <h2 style="margin:0 0 8px">Contact</h2>
+        <p class="muted" style="margin:0 0 16px">Explique ton besoin, gamemode et délais :</p>
+        <a class="btn btn-primary" href="mailto:contact@nexiumcodding.dev">✉️ Email</a>
+        <a class="btn" href="https://discord.com/users/votreid" target="_blank">🎮 Discord</a>
+      </div>
+    </section>
+
+    <footer>
+      <p class="muted">© <span id="year"></span> NexiumCodding — Développement GLua</p>
+    </footer>
+  </div>
+
+  <!-- Floating Add button -->
+  <button id="openModal" class="fab">＋ Ajouter un portfolio</button>
+
+  <!-- Modal for portfolio item -->
+  <div id="backdrop" class="backdrop">
+    <div class="modal">
+      <h3>Ajouter / Éditer un projet</h3>
+      <div class="row">
+        <div><label>Titre<input id="fTitle" placeholder="Ex : HUD RP minimal" /></label></div>
+        <div><label>Image (URL ou laisser vide pour placeholder)<input id="fImage" placeholder="https://.../image.jpg" /></label></div>
+      </div>
+      <div class="row">
+        <div><label>Tags (séparés par des virgules)<input id="fTags" placeholder="GLua, HUD, DarkRP" /></label></div>
+        <div><label>Lien (optionnel)<input id="fLink" placeholder="https://..." /></label></div>
+      </div>
+      <div class="row-1">
+        <label>Description<textarea id="fDesc" placeholder="Décris brièvement le projet"></textarea></label>
+      </div>
+      <p class="notice">Astuce : si tu as des images dans ce dépôt, mets un chemin relatif (ex : <code>assets/mon-projet.jpg</code>).</p>
+      <div class="actions">
+        <button id="saveLocal" class="btn btn-primary">Enregistrer</button>
+        <button id="exportJson" class="btn">Exporter JSON</button>
+        <button id="openAdmin" class="btn">Admin</button>
+        <button id="closeModal" class="btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin small modal -->
+  <div id="adminBackdrop" class="backdrop">
+    <div class="modal">
+      <h3>Admin — Publication GitHub (optionnel)</h3>
+      <div class="row">
+        <div><label>Owner<input id="ghOwner" placeholder="NexiumDev"/></label></div>
+        <div><label>Repo<input id="ghRepo" placeholder="NexiumDev"/></label></div>
+      </div>
+      <div class="row">
+        <div><label>Path<input id="ghPath" placeholder="data/portfolio.json"/></label></div>
+        <div><label>Token<input id="ghToken" placeholder="ghp_..." /></label></div>
+      </div>
+      <p class="notice">Le token n’est stocké que dans ton navigateur (localStorage). Clique ensuite sur « Enregistrer sur GitHub » pour publier le JSON dans le dépôt.</p>
+      <div class="actions">
+        <button id="saveCfg" class="btn">Sauvegarder config</button>
+        <button id="pushGitHub" class="btn btn-primary">Enregistrer sur GitHub</button>
+        <button id="closeAdmin" class="btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const grid = $("#portfolioGrid");
+    const LS_KEY = "nexium.portfolio.items";
+
+    function year(){ document.getElementById('year').textContent = new Date().getFullYear(); }
+    year();
+
+    // Load data: prefer /data/portfolio.json then localStorage, then defaults
+    let items = [];
+    async function loadPortfolio(){
+      try{
+        const r = await fetch('./data/portfolio.json', {cache:'no-store'});
+        if(r.ok){ const j = await r.json(); items = j.items || []; saveLocal(false); render(); return; }
+      }catch(e){/* ignore */}
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(raw){ items = JSON.parse(raw); render(); return; }
+      }catch(e){}
+      items = []; render();
+    }
+
+    function saveLocal(updateLS=true){
+      if(updateLS){ localStorage.setItem(LS_KEY, JSON.stringify(items)); }
+    }
+
+    function tagEl(t){ const s=document.createElement('span'); s.className='tag'; s.textContent=t.trim(); return s; }
+
+    function card(i){
+      const it = items[i];
+      const el = document.createElement('article');
+      el.className = 'card';
+      const img = document.createElement('div');
+      img.className = 'thumb';
+      img.style.backgroundImage = `url('${it.image || "assets/hud-placeholder.svg"}')`;
+      img.style.backgroundSize = 'cover';
+      img.style.backgroundPosition = 'center';
+      const body = document.createElement('div');
+      body.className = 'body';
+      const h = document.createElement('h3'); h.textContent = it.title || 'Sans titre';
+      const p = document.createElement('p'); p.className='muted'; p.textContent = it.description || '';
+      const tags = document.createElement('div'); tags.className='tags';
+      (it.tags || []).forEach(t=> tags.appendChild(tagEl(t)));
+      const actions = document.createElement('div'); actions.className='btn-row';
+      const edit = document.createElement('a'); edit.href='#'; edit.className='btn'; edit.textContent='Éditer'; edit.onclick=(e)=>{e.preventDefault(); openModal(i)};
+      if(it.link){ const more = document.createElement('a'); more.href=it.link; more.className='btn btn-ghost'; more.textContent='Voir'; more.target='_blank'; actions.appendChild(more); }
+      actions.appendChild(edit);
+      body.append(h,p,tags,actions);
+      el.append(img,body);
+      return el;
+    }
+
+    function render(){
+      grid.innerHTML='';
+      if(!items.length){ grid.innerHTML = '<p class="muted">Aucun projet pour l’instant. Utilise « Ajouter un portfolio ».</p>'; return; }
+      items.forEach((_,i)=> grid.appendChild(card(i)));
+    }
+
+    // Modal logic
+    const backdrop = $("#backdrop");
+    const adminBackdrop = $("#adminBackdrop");
+    $("#openModal").onclick = ()=> openModal();
+    $("#closeModal").onclick = ()=> backdrop.style.display='none';
+    $("#openAdmin").onclick = ()=> { adminBackdrop.style.display='flex'; loadCfg(); };
+    $("#closeAdmin").onclick = ()=> adminBackdrop.style.display='none';
+
+    function openModal(index=-1){
+      backdrop.style.display='flex';
+      backdrop.dataset.index = index;
+      if(index>=0){
+        const it = items[index];
+        $("#fTitle").value = it.title||'';
+        $("#fImage").value = it.image||'';
+        $("#fTags").value  = (it.tags||[]).join(', ');
+        $("#fLink").value  = it.link||'';
+        $("#fDesc").value  = it.description||'';
+      } else {
+        $("#fTitle").value = $("#fImage").value = $("#fTags").value = $("#fLink").value = $("#fDesc").value = '';
+      }
+    }
+
+    $("#saveLocal").onclick = ()=>{
+      const data = {
+        title: $("#fTitle").value.trim(),
+        image: $("#fImage").value.trim(),
+        tags: ($("#fTags").value||'').split(',').map(s=>s.trim()).filter(Boolean),
+        link: $("#fLink").value.trim(),
+        description: $("#fDesc").value.trim()
+      };
+      const idx = parseInt(backdrop.dataset.index||-1);
+      if(idx>=0){ items[idx]=data; } else { items.unshift(data); }
+      saveLocal(true); render(); backdrop.style.display='none';
+    };
+
+    $("#exportJson").onclick = ()=>{
+      const blob = new Blob([ JSON.stringify({items}, null, 2) ], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'portfolio.json'; a.click();
+    };
+
+    // Admin config + GitHub push
+    function loadCfg(){
+      $("#ghOwner").value = localStorage.getItem('ghOwner') || 'NexiumDev';
+      $("#ghRepo").value  = localStorage.getItem('ghRepo')  || 'NexiumDev';
+      $("#ghPath").value  = localStorage.getItem('ghPath')  || 'data/portfolio.json';
+      $("#ghToken").value = localStorage.getItem('ghToken') || '';
+    }
+    $("#saveCfg").onclick = ()=>{
+      localStorage.setItem('ghOwner', $("#ghOwner").value.trim());
+      localStorage.setItem('ghRepo',  $("#ghRepo").value.trim());
+      localStorage.setItem('ghPath',  $("#ghPath").value.trim());
+      localStorage.setItem('ghToken', $("#ghToken").value.trim());
+      alert('Config enregistrée (localStorage).');
+    };
+
+    async function pushGitHub(){
+      const owner = $("#ghOwner").value.trim();
+      const repo  = $("#ghRepo").value.trim();
+      const path  = $("#ghPath").value.trim();
+      const token = $("#ghToken").value.trim();
+      if(!token){ alert('Token manquant'); return; }
+      const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+      // Get current SHA if file exists
+      let sha = undefined;
+      const getRes = await fetch(apiBase, {headers:{'Authorization': `Bearer ${token}`}});
+      if(getRes.ok){ const gj = await getRes.json(); sha = gj.sha; }
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify({items}, null, 2))));
+      const putRes = await fetch(apiBase, {
+        method:'PUT',
+        headers:{'Authorization': `Bearer ${token}`,'Content-Type':'application/json'},
+        body: JSON.stringify({ message: 'Update portfolio.json via site', content, sha })
+      });
+      if(putRes.ok){ alert('Publié sur GitHub ✅'); adminBackdrop.style.display='none'; }
+      else {
+        const t = await putRes.text();
+        alert('Erreur GitHub: ' + t);
+      }
+    }
+    $("#pushGitHub").onclick = pushGitHub;
+
+    // Start
+    loadPortfolio();
+  </script>
+</body>
+</html>

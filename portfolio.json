@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "title": "HUD personnalis\u00e9 n\u00e9on soft",
+      "description": "HUD l\u00e9ger (draw hooks) avec scale dynamique, caching textures, z\u00e9ro allocation par frame.",
+      "image": "assets/hud-placeholder.svg",
+      "tags": [
+        "GLua",
+        "HUD",
+        "DarkRP"
+      ],
+      "link": ""
+    },
+    {
+      "title": "Inventaire modulaire",
+      "description": "Data persistantes, drag&drop, permissions, hooks serveur/clients.",
+      "image": "assets/inventory-placeholder.svg",
+      "tags": [
+        "Inventaire",
+        "Syst\u00e8me"
+      ],
+      "link": ""
+    },
+    {
+      "title": "Jobs avanc\u00e9s",
+      "description": "Progression, comp\u00e9tences, cooldowns et UI propre.",
+      "image": "assets/jobs-placeholder.svg",
+      "tags": [
+        "Jobs",
+        "DarkRP"
+      ],
+      "link": ""
+    }
+  ]
+}
