@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexiumCodding — Développeur GLua</title>
+<meta name="description" content="Portfolio et tarifs de NexiumCodding — développeur GLua pour Garry's Mod.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NexiumCodding — Développeur GLua">
+<meta property="og:description" content="Addons GLua sur mesure, création complète de serveurs, maintenance et tarifs transparents.">
+<meta property="og:image" content="https://nexiumcodding.github.io/Nexium/nexium-bg.jpg">
+
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#0b0b11;
+    --panel:rgba(15,15,24,.75);
+    --muted:#c8c8c8;
+    --line:rgba(255,255,255,.08);
+    --primary:#b84dff;
+    --primary2:#22d3ee;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:#ececec;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;line-height:1.6}
+  .bg-layer{position:fixed;inset:0;z-index:-2;background-image:url('https://nexiumcodding.github.io/Nexium/nexium-bg.jpg'),url('./nexium-bg.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}
+  .shade{position:fixed;inset:0;z-index:-1;background:radial-gradient(120% 70% at 50% 0%, rgba(10,10,20,.35), rgba(10,10,20,.85))}
+  .wrap{max-width:1200px;margin:0 auto;padding:20px}
+  .nav{display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(10px) saturate(140%);background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-top:12px}
+  .brand{font-weight:800}
+  .links a{color:#e7d2ff;text-decoration:none;margin-left:16px}
+  .links a.active{color:#fff;text-decoration:underline}
+  .hero{padding:72px 0 40px}
+  .title{font-weight:800;font-size:42px;margin:0 0 10px}
+  .muted{color:var(--muted)}
+  .section{margin:44px 0}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .card{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .thumb{aspect-ratio:16/9;background:#10121a;border-bottom:1px solid var(--line)}
+  .body{padding:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .tag{border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:12px}
+  .btn{display:inline-block;border:1px solid var(--line);padding:10px 14px;border-radius:12px;color:#fff;text-decoration:none;background:transparent;cursor:pointer}
+  .btn.primary{background:linear-gradient(90deg,var(--primary),var(--primary2));border:none}
+  .btn.ghost{background:transparent}
+  .btn.danger{border-color:#ff6161;color:#ffbdbd}
+  .btn-row{display:flex;gap:10px;margin-top:10px}
+  .pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .price-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(0,0,0,.45)}
+  .price-top{padding:18px;border-bottom:1px solid var(--line);background:
+    radial-gradient(100% 120% at 20% 20%, rgba(184,77,255,.25), transparent 60%),
+    radial-gradient(100% 120% at 80% 0%, rgba(34,211,238,.22), transparent 65%)}
+  .price-title{margin:0 0 8px;font-weight:800}
+  .price-amount{display:inline-block;background:#fff;color:#0f0f16;padding:6px 12px;border-radius:10px;font-weight:800}
+  .price-desc{padding:14px;color:var(--muted)}
+  .price-illus{aspect-ratio:16/9;background:linear-gradient(135deg, rgba(184,77,255,.35), rgba(34,211,238,.25));border-bottom:1px solid var(--line)}
+  .fab{position:fixed;right:18px;bottom:18px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:10}
+  .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:20}
+  .modal{width:760px;max-width:calc(100% - 24px);background:#11121a;border:1px solid var(--line);border-radius:18px;padding:18px}
+  .modal h3{margin:0 0 12px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .row-1{display:grid;grid-template-columns:1fr;gap:12px}
+  input,textarea{width:100%;background:#0d0e15;border:1px solid var(--line);padding:10px 12px;color:#fff;border-radius:12px}
+  textarea{min-height:90px}
+  .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+  .notice{font-size:12px;color:var(--muted)}
+  @media (max-width:640px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div><div class="shade"></div>
+
+<div class="wrap">
+  <nav class="nav">
+    <strong class="brand">NexiumCodding</strong>
+    <div class="links">
+      <a href="#/" id="lnkHome">Accueil</a>
+      <a href="#/portfolio" id="lnkPortfolio">Portfolio</a>
+    </div>
+  </nav>
+
+  <section id="view-home" class="section" hidden>
+    <div class="panel">
+      <header class="hero">
+        <h1 class="title">Développement GLua pour vos serveurs Garry's Mod</h1>
+        <p class="muted">HUD, inventaires, jobs, intégrations & optimisation. Livraison propre, documentée, support.</p>
+      </header>
+
+      <h2 style="margin:0 0 12px">Tarifs</h2>
+      <p class="muted" style="margin:0 0 16px">Présentation claire, sans achat en ligne. Contact pour devis.</p>
+
+      <div class="pricing-grid">
+        <article class="price-card">
+          <div class="price-illus"></div>
+          <div class="price-top">
+            <h3 class="price-title">Réglage / Modification d’addons</h3>
+            <div class="price-amount">25€</div>
+          </div>
+          <div class="price-desc">
+            <ul style="margin:0 0 10px 18px">
+              <li>Corrections & petites modifications</li>
+              <li><strong>Pas d’UI</strong> (juste du code)</li>
+              <li>Possibles réglages d’UI <em>avec votre UI</em></li>
+            </ul>
+          </div>
+          <div class="btn-row" style="padding:0 14px 16px">
+            <a class="btn" href="#/portfolio">Voir des exemples</a>
+            <a class="btn ghost" href="mailto:contact@nexiumcodding.dev">Demander</a>
+          </div>
+        </article>
+
+        <article class="price-card">
+          <div class="price-illus"></div>
+          <div class="price-top">
+            <h3 class="price-title">Addon personnalisé</h3>
+            <div class="price-amount">150€ – 300€</div>
+          </div>
+          <div class="price-desc">
+            <ul style="margin:0 0 10px 18px">
+              <li>Développement sur cahier des charges</li>
+              <li>Intégration serveur & hooks GLua</li>
+              <li>Docs courtes</li>
+              <li>Prix selon complexité</li>
+            </ul>
+          </div>
+          <div class="btn-row" style="padding:0 14px 16px">
+            <a class="btn" href="#/portfolio">Voir des exemples</a>
+            <a class="btn ghost" href="mailto:contact@nexiumcodding.dev">Demander</a>
+          </div>
+        </article>
+
+        <article class="price-card">
+          <div class="price-illus"></div>
+          <div class="price-top">
+            <h3 class="price-title">Création complète d'un serveur</h3>
+            <div class="price-amount">1000€</div>
+          </div>
+          <div class="price-desc">
+            <ul style="margin:0 0 10px 18px">
+              <li>Setup complet : addons, gamemode, config</li>
+              <li>Optimisation & bonnes pratiques</li>
+              <li>Livraison + docs</li>
+              <li>Suivi après livraison</li>
+            </ul>
+          </div>
+          <div class="btn-row" style="padding:0 14px 16px">
+            <a class="btn" href="#/portfolio">Voir des exemples</a>
+            <a class="btn ghost" href="mailto:contact@nexiumcodding.dev">Demander</a>
+          </div>
+        </article>
+
+        <article class="price-card">
+          <div class="price-illus"></div>
+          <div class="price-top">
+            <h3 class="price-title">Développeur pour communauté</h3>
+            <div class="price-amount">50€/mois</div>
+          </div>
+          <div class="price-desc">
+            <ul style="margin:0 0 10px 18px">
+              <li>Maintenance & petits ajouts continus</li>
+              <li>Corrections de bugs prioritaires</li>
+              <li>Conseil & veille technique</li>
+            </ul>
+          </div>
+          <div class="btn-row" style="padding:0 14px 16px">
+            <a class="btn" href="#/portfolio">Voir des exemples</a>
+            <a class="btn ghost" href="mailto:contact@nexiumcodding.dev">Demander</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-portfolio" class="section" hidden>
+    <div class="panel">
+      <h2 style="margin:0 0 8px">Portfolio</h2>
+      <p class="muted" style="margin:0 0 16px">Ajoute des projets (image ou vidéo), édite, supprime. Publie sur GitHub pour mettre en ligne.</p>
+      <div id="portfolioGrid" class="grid"></div>
+      <div class="btn-row" style="margin-top:16px">
+        <button id="btnExport" class="btn">Exporter JSON</button>
+        <label class="btn">Importer JSON<input id="importJson" type="file" accept="application/json" style="display:none"></label>
+        <button id="btnAdmin" class="btn">Admin (GitHub)</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="section" style="margin-top:20px">
+    <div class="panel">
+      <p class="muted">© <span id="year"></span> NexiumCodding — Développement GLua</p>
+      <p class="muted">Fond : https://nexiumcodding.github.io/Nexium/nexium-bg.jpg (fallback ./nexium-bg.jpg)</p>
+    </div>
+  </footer>
+</div>
+
+<button id="btnAdd" class="fab" title="Ajouter un portfolio">＋ Ajouter un portfolio</button>
+
+<div id="backdrop" class="backdrop">
+  <div class="modal">
+    <h3>Ajouter / Éditer un projet</h3>
+    <div class="row">
+      <div><label>Titre<input id="fTitle" placeholder="Ex : HUD RP minimal"></label></div>
+      <div><label>Tags (séparés par des virgules)<input id="fTags" placeholder="GLua, HUD, DarkRP"></label></div>
+    </div>
+    <div class="row">
+      <div><label>Image (PNG/JPG/GIF)<input id="fImg" type="file" accept="image/*"></label></div>
+      <div><label>Vidéo (MP4)<input id="fVid" type="file" accept="video/mp4"></label></div>
+    </div>
+    <div class="row-1">
+      <label>Description<textarea id="fDesc" placeholder="Décris brièvement le projet"></textarea></label>
+      <label>Lien (optionnel)<input id="fLink" placeholder="https://..."></label>
+    </div>
+    <p class="notice">Choisis une image <em>ou</em> une vidéo. Stockage local pour l’aperçu. Utilise l’Admin pour publier dans le dépôt (uploads/ + data/portfolio.json).</p>
+    <div class="actions">
+      <button id="btnSave" class="btn primary">Enregistrer</button>
+      <button id="btnCancel" class="btn">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<div id="adminBackdrop" class="backdrop">
+  <div class="modal">
+    <h3>Admin — Publication GitHub</h3>
+    <div class="row">
+      <div><label>Owner<input id="ghOwner" placeholder="nexiumcodding"></label></div>
+      <div><label>Repo<input id="ghRepo" placeholder="Nexium"></label></div>
+    </div>
+    <div class="row">
+      <div><label>Path JSON<input id="ghPath" placeholder="data/portfolio.json"></label></div>
+      <div><label>Token (PAT)<input id="ghToken" placeholder="ghp_..."></label></div>
+    </div>
+    <p class="notice">Le token reste uniquement dans ton navigateur (localStorage). Les médias importés seront poussés dans <code>uploads/</code>, puis le JSON sera mis à jour avec leurs URLs.</p>
+    <div class="actions">
+      <button id="btnSaveCfg" class="btn">Sauvegarder config</button>
+      <button id="btnPublish" class="btn primary">Publier sur GitHub</button>
+      <button id="btnAdminClose" class="btn">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const routes = {{ "/": document.getElementById("view-home"), "/portfolio": document.getElementById("view-portfolio") }};
+function setActive(id){ document.querySelectorAll('.links a').forEach(a=>a.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+function renderRoute(){ const h=location.hash.replace('#','')||'/'; Object.values(routes).forEach(v=>v.hidden=true); (routes[h]||routes["/"]).hidden=false; setActive(h==='/portfolio'?'lnkPortfolio':'lnkHome'); }
+addEventListener('hashchange',renderRoute); renderRoute();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const grid=document.getElementById('portfolioGrid'); const LS_KEY='nexium.portfolio.v1'; let items=[];
+async function loadInitial(){
+  try{ const r=await fetch('./data/portfolio.json',{cache:'no-store'}); if(r.ok){ const j=await r.json(); items=j.items||[]; saveLocal(); render(); return; } }catch(e){}
+  try{ const raw=localStorage.getItem(LS_KEY); if(raw) items=JSON.parse(raw)||[]; }catch(e){ items=[]; }
+  render();
+}
+function saveLocal(){ localStorage.setItem(LS_KEY, JSON.stringify(items)); }
+function card(it,idx){ const el=document.createElement('article'); el.className='card';
+  const top=document.createElement('div'); top.className='thumb'; if(it.image) top.style.backgroundImage=`url('${it.image}')`; el.appendChild(top);
+  if(it.video){ const v=document.createElement('video'); v.src=it.video; v.controls=true; v.style.width='100%'; v.style.display='block'; el.appendChild(v); }
+  const b=document.createElement('div'); b.className='body'; const h=document.createElement('h3'); h.textContent=it.title||'Sans titre';
+  const p=document.createElement('p'); p.className='muted'; p.textContent=it.description||''; const tags=document.createElement('div'); tags.className='tags';
+  (it.tags||[]).forEach(t=>{ const s=document.createElement('span'); s.className='tag'; s.textContent=t; tags.appendChild(s); });
+  const row=document.createElement('div'); row.className='btn-row';
+  if(it.link){ const a=document.createElement('a'); a.href=it.link; a.target='_blank'; a.className='btn ghost'; a.textContent='Voir'; row.appendChild(a); }
+  const ed=document.createElement('button'); ed.className='btn'; ed.textContent='Éditer'; ed.onclick=()=>openModal(idx);
+  const del=document.createElement('button'); del.className='btn danger'; del.textContent='Supprimer'; del.onclick=()=>{ if(confirm('Supprimer ce projet ?')){ items.splice(idx,1); saveLocal(); render(); } };
+  row.append(ed,del); b.append(h,p,tags,row); el.appendChild(b); return el; }
+function render(){ grid.innerHTML=''; if(!items.length){ grid.innerHTML='<p class="muted">Aucun projet — clique « Ajouter un portfolio ».</p>'; return; } items.forEach((it,i)=>grid.appendChild(card(it,i))); }
+
+const bd=document.getElementById('backdrop');
+document.getElementById('btnAdd').onclick=()=>openModal(-1);
+document.getElementById('btnCancel').onclick=()=>{ bd.style.display='none'; clearInputs(); };
+document.getElementById('btnSave').onclick=saveItem;
+function clearInputs(){ for(const id of ['fTitle','fTags','fDesc','fLink']) document.getElementById(id).value=''; document.getElementById('fImg').value=''; document.getElementById('fVid').value=''; }
+function openModal(idx){ bd.dataset.index=idx; if(idx>=0){ const it=items[idx]; fTitle.value=it.title||''; fTags.value=(it.tags||[]).join(', '); fDesc.value=it.description||''; fLink.value=it.link||''; } else { clearInputs(); } bd.style.display='flex'; }
+function readAsDataURL(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(f); }); }
+async function saveItem(){ const idx=parseInt(bd.dataset.index||-1); const data={ title:fTitle.value.trim(), tags:(fTags.value||'').split(',').map(s=>s.trim()).filter(Boolean), description:fDesc.value.trim(), link:fLink.value.trim() };
+  const img=fImg.files[0]; const vid=fVid.files[0]; if(img) data.image=await readAsDataURL(img); if(vid) data.video=await readAsDataURL(vid);
+  if(idx>=0) items[idx]=Object.assign(items[idx],data); else items.unshift(data); saveLocal(); render(); bd.style.display='none'; clearInputs(); }
+
+document.getElementById('btnExport').onclick=()=>{ const blob=new Blob([JSON.stringify({items},null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='portfolio.json'; a.click(); };
+document.getElementById('importJson').onchange=async (e)=>{ const f=e.target.files[0]; if(!f) return; const txt=await f.text(); try{ const j=JSON.parse(txt); items=j.items||[]; saveLocal(); render(); alert('Import OK'); }catch(err){ alert('JSON invalide'); } };
+
+const adb=document.getElementById('adminBackdrop');
+document.getElementById('btnAdmin').onclick=()=>{ adb.style.display='flex'; loadCfg(); };
+document.getElementById('btnAdminClose').onclick=()=>{ adb.style.display='none'; };
+document.getElementById('btnSaveCfg').onclick=saveCfg;
+document.getElementById('btnPublish').onclick=publishGithub;
+function loadCfg(){ ghOwner.value=localStorage.getItem('ghOwner')||'nexiumcodding'; ghRepo.value=localStorage.getItem('ghRepo')||'Nexium'; ghPath.value=localStorage.getItem('ghPath')||'data/portfolio.json'; ghToken.value=localStorage.getItem('ghToken')||''; }
+function saveCfg(){ localStorage.setItem('ghOwner',ghOwner.value.trim()); localStorage.setItem('ghRepo',ghRepo.value.trim()); localStorage.setItem('ghPath',ghPath.value.trim()); localStorage.setItem('ghToken',ghToken.value.trim()); alert('Config enregistrée.'); }
+async function gh(url,method,token,body){ return fetch(url,{method,headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},body: body?JSON.stringify(body):undefined}); }
+async function getSha(url,token){ const r=await gh(url,'GET',token); if(r.status===200){ const j=await r.json(); return j.sha; } return undefined; }
+function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+async function putContent(owner,repo,path,token,contentB64,message){ const api=`https://api.github.com/repos/${owner}/${repo}/contents/${path}`; const sha=await getSha(api,token); const r=await gh(api,'PUT',token,{message,content:contentB64,sha}); if(!r.ok) throw new Error(await r.text()); return r.json(); }
+async function publishBlob(owner,repo,path,token,dataUrl){ const api=`https://api.github.com/repos/${owner}/${repo}/contents/${path}`; const sha=await getSha(api,token); const base64=dataUrl.split(',')[1]; const r=await gh(api,'PUT',token,{message:`upload ${path}`,content:base64,sha}); if(!r.ok) throw new Error(await r.text()); return r.json(); }
+function slug(s){ return (s||'media').toLowerCase().replace(/[^a-z0-9._-]+/g,'-').replace(/-+/g,'-'); }
+async function publishGithub(){ const owner=ghOwner.value.trim(); const repo=ghRepo.value.trim(); const token=ghToken.value.trim(); const jsonPath=ghPath.value.trim()||'data/portfolio.json'; if(!owner||!repo||!token){ alert('Owner/Repo/Token manquants'); return; }
+  const next=[]; for(const it of items){ const copy={...it};
+    try{ if(it.image&&it.image.startsWith('data:')){ const ext=it.image.substring(it.image.indexOf('/')+1,it.image.indexOf(';')); const name=`uploads/${Date.now()}-${slug(it.title)}.${ext}`; await publishBlob(owner,repo,name,token,it.image); copy.image=`https://${owner}.github.io/${repo}/${name}`; }
+         if(it.video&&it.video.startsWith('data:')){ const name=`uploads/${Date.now()}-${slug(it.title)}.mp4`; await publishBlob(owner,repo,name,token,it.video); copy.video=`https://${owner}.github.io/${repo}/${name}`; } }
+    catch(e){ alert('Erreur upload média: '+e.message); return; }
+    next.push(copy);
+  }
+  try{ await putContent(owner,repo,jsonPath,token,b64(JSON.stringify({items:next},null,2)),'update portfolio.json'); alert('Publication réussie ✅'); }
+  catch(e){ alert('Erreur publication JSON: '+e.message); }
+}
+
+loadInitial();
+</script>
+</body>
+</html>
